@@ -1,0 +1,196 @@
+/* ============================================================
+   Shared building blocks used across all three portals: the
+   complaint/drive card layout, status + severity badges, the map
+   card, and friendly empty states. Portal-specific CSS files only
+   add layout around these.
+   ============================================================ */
+
+/* --- Card lists --- */
+.complaint-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.complaint-card,
+.drive-card {
+  display: flex;
+  gap: 1rem;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.complaint-card:hover,
+.drive-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.complaint-thumb {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: var(--radius-control);
+  flex-shrink: 0;
+}
+
+.complaint-body,
+.drive-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.complaint-text,
+.drive-title {
+  color: var(--forest);
+}
+
+.drive-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.complaint-meta {
+  font-size: 0.85em;
+  color: var(--stone);
+}
+
+/* Badges always sit in their own row at the bottom of a card */
+.card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.card-actions button {
+  font-size: 0.85rem;
+  padding: 0.5em 0.9em;
+}
+
+.submit-btn {
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+/* --- Status badge: "status as growth" motif --- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--forest);
+  background: var(--sage-deep);
+  width: fit-content;
+}
+
+/* --- Severity badge: solid colored pill --- */
+.severity-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8em;
+  font-weight: 700;
+  color: #fff;
+  width: fit-content;
+}
+
+.severity-pending {
+  background: var(--stone);
+}
+.severity-low {
+  background: var(--leaf);
+}
+.severity-moderate {
+  background: var(--sun);
+}
+.severity-high {
+  background: var(--clay-red);
+}
+
+/* --- Drive badge: cleanup-drive lifecycle (upcoming/completed) --- */
+.drive-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8em;
+  font-weight: 700;
+  color: #fff;
+  width: fit-content;
+}
+
+.drive-badge-upcoming {
+  background: var(--moss);
+}
+.drive-badge-completed {
+  background: var(--leaf);
+}
+
+/* --- Empty states: a friendly line instead of a bare sentence --- */
+.empty-state {
+  color: var(--stone);
+  font-style: italic;
+  padding: 0.75rem 0;
+}
+
+/* --- Map card --- */
+.map-card {
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.map-card-header {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.map-card-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.map-view {
+  width: 100%;
+}
+
+/* Leaflet popup content, styled to match the rest of the app */
+.popup-text {
+  margin: 0 0 0.4rem;
+  max-width: 220px;
+  font-family: var(--font-body);
+  color: var(--forest);
+}
+
+.popup-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.popup-meta {
+  margin: 0;
+  font-size: 0.85em;
+  color: var(--stone);
+}

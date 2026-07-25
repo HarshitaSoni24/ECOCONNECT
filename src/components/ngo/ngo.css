@@ -1,0 +1,77 @@
+/* NGO portal: map + queue on the left, drive form + drives list on the
+   right. Stacks to a single column under 768px. */
+
+.ngo-portal {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.ngo-portal > p {
+  color: var(--stone);
+}
+
+.ngo-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .ngo-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ngo-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ngo-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.drive-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
+.drive-form label {
+  margin-top: 0.5rem;
+}
+
+.linked-complaint {
+  font-size: 0.9em;
+  color: var(--stone);
+  background: var(--sage-deep);
+  border-radius: var(--radius-control);
+  padding: 0.6em 0.8em;
+}
+
+.drives-list h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+  color: var(--stone);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 768px) {
+  .ngo-portal {
+    padding: 1.25rem;
+  }
+}

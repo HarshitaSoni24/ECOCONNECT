@@ -1,0 +1,78 @@
+/* Citizen portal: report form + "My Complaints" list. */
+
+.citizen-portal {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem 2rem 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.citizen-portal > p {
+  color: var(--stone);
+}
+
+.complaint-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 480px;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
+.complaint-form label {
+  margin-top: 0.5rem;
+}
+
+.complaint-form textarea {
+  resize: vertical;
+}
+
+.photo-preview {
+  margin-top: 0.5rem;
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: var(--radius-control);
+  border: 1.5px solid var(--border-soft);
+  object-fit: cover;
+}
+
+.location-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.location-value {
+  font-size: 0.9em;
+  color: var(--moss);
+  font-weight: 700;
+}
+
+.location-error {
+  color: var(--clay-red);
+  font-size: 0.9em;
+  margin-top: 0.25rem;
+}
+
+.my-complaints {
+  max-width: 640px;
+}
+
+@media (max-width: 768px) {
+  .citizen-portal {
+    padding: 1.25rem;
+  }
+
+  .complaint-form,
+  .my-complaints {
+    max-width: 100%;
+  }
+}

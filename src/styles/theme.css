@@ -1,0 +1,162 @@
+/* ============================================================
+   EcoConnect design tokens
+   A cohesive "environmental" system: forest greens, warm sun/clay
+   accents, rounded organic shapes, soft shadows. Import this file
+   once (see main.jsx) — every other stylesheet reads these vars.
+   ============================================================ */
+
+:root {
+  /* --- Core palette --- */
+  --forest: #1b4332; /* primary text, headers, primary buttons */
+  --moss: #2d6a4f; /* button hover, active nav */
+  --leaf: #74c69d; /* success, resolved, low severity */
+  --sage: #edf4ee; /* page background */
+  --card: #ffffff; /* cards */
+  --sun: #e9b44c; /* moderate severity, warnings */
+  --clay-red: #c1554d; /* high severity, urgent (muted, not neon) */
+  --stone: #6b7a70; /* secondary text, borders */
+
+  /* --- Derived tones --- */
+  --border-soft: #d3e5da; /* sage-tinted border for inputs/cards */
+  --sage-deep: #dfeee4; /* slightly deeper sage, for subtle fills */
+  --shadow-card: 0 6px 20px rgba(27, 67, 50, 0.08), 0 1px 3px rgba(27, 67, 50, 0.06);
+  --shadow-card-hover: 0 14px 28px rgba(27, 67, 50, 0.12), 0 3px 8px rgba(27, 67, 50, 0.07);
+  --focus-ring: 0 0 0 3px rgba(45, 106, 79, 0.28);
+
+  /* --- Radii --- */
+  --radius-card: 12px;
+  --radius-control: 8px;
+  --radius-pill: 999px;
+
+  /* --- Typography --- */
+  --font-heading: 'Bricolage Grotesque', system-ui, 'Segoe UI', sans-serif;
+  --font-body: 'Nunito Sans', system-ui, 'Segoe UI', sans-serif;
+}
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--forest);
+  background: var(--sage);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Headings --- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--forest);
+  margin: 0 0 0.4em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.375rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+p {
+  margin: 0 0 0.5em;
+}
+
+a {
+  color: var(--moss);
+}
+
+/* --- Form controls: same organic look everywhere by default --- */
+button {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--forest);
+  border: none;
+  border-radius: var(--radius-control);
+  padding: 0.6em 1.1em;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--moss);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  background: var(--stone);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Secondary / outlined button variant, opt-in via className */
+button.btn-secondary {
+  background: transparent;
+  color: var(--forest);
+  border: 1.5px solid var(--moss);
+}
+
+button.btn-secondary:hover:not(:disabled) {
+  background: var(--sage-deep);
+  color: var(--forest);
+}
+
+button.btn-secondary:disabled {
+  background: transparent;
+  color: var(--stone);
+  border-color: var(--border-soft);
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--forest);
+  background: var(--card);
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-control);
+  padding: 0.55em 0.75em;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--stone);
+}
+
+label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--forest);
+}
