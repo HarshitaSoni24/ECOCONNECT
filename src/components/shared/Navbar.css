@@ -7,7 +7,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: var(--forest);
+  background: rgba(27, 67, 50, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-card);
   padding: 0.9rem 1.5rem;
 }
 
@@ -25,6 +31,9 @@
 }
 
 .role-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -33,6 +42,23 @@
   background: var(--leaf);
   border-radius: var(--radius-pill);
   padding: 0.3em 0.9em;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4em;
+  border-radius: var(--radius-control);
+  transition: background-color 0.15s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--moss);
 }
 
 .navbar-logout {

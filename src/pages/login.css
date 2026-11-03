@@ -1,62 +1,874 @@
-/* Centered card on the sage page background. */
+/* ============================================================
+   EcoConnect Public Scrolling Homepage & Auth Stylesheet
+   ============================================================ */
 
-.login-page {
+/* --- GENERAL UTILS / REUSABLE --- */
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--leaf);
+  top: 10%;
+  left: -5%;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--sun);
+  bottom: 10%;
+  right: -5%;
+}
+
+/* Common Section Titles */
+.section-title-block {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-tag {
+  color: var(--moss);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--sage-deep);
+  width: fit-content;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  margin: 0 auto;
+}
+
+.section-title-block h2 {
+  font-size: 2.25rem;
+  color: var(--forest);
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+.section-title-block p {
+  color: var(--stone);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ============================================================
+   1. STICKY TOP NAVIGATION BAR
+   ============================================================ */
+.home-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 5%;
+  background: rgba(237, 244, 238, 0.85); /* theme '--sage' with opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.45rem;
+  color: var(--forest);
+}
+
+.brand-icon {
+  color: var(--moss);
+}
+
+.nav-links-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--forest);
+  cursor: pointer;
+  padding: 0.4em 0.8rem;
+  border-radius: var(--radius-control);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.nav-link-btn:hover {
+  color: var(--moss);
+  background-color: var(--sage-deep);
+}
+
+.btn-nav-cta {
+  background: var(--forest);
+  color: #fff;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.55em 1.25em;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-nav-cta:hover {
+  background: var(--moss);
+}
+
+/* ============================================================
+   2. SCROLLING HOME CONTAINER
+   ============================================================ */
+.home-container {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--sage);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* --- HERO SECTION --- */
+.home-hero-section {
+  padding: 5.5rem 5% 6rem 5%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-grid-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-left-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-announcement {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.775rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--moss);
+  background: var(--sage-deep);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-pill);
+  width: fit-content;
+}
+
+.hero-main-title {
+  font-size: 3.25rem;
+  line-height: 1.12;
+  color: var(--forest);
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.hero-main-title em {
+  font-style: italic;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--moss);
+}
+
+.hero-main-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--stone);
+  margin: 0;
+  max-width: 580px;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn-hero-action {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-hero-action.btn-primary {
+  background: var(--forest);
+  color: #fff;
+  border: none;
+}
+
+.btn-hero-action.btn-primary:hover {
+  background: var(--moss);
+}
+
+.btn-hero-action.btn-secondary {
+  background: transparent;
+  color: var(--forest);
+  border: 1.5px solid var(--border-soft);
+}
+
+.btn-hero-action.btn-secondary:hover {
+  background: var(--sage-deep);
+  border-color: var(--moss);
+}
+
+/* Stats Box Container */
+.hero-right-content {
+  display: flex;
+  justify-content: center;
+}
+
+.stats-box-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 440px;
+}
+
+.home-stat-card {
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.home-stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.home-stat-icon {
+  color: var(--moss);
+  margin-bottom: 0.25rem;
+  background: var(--sage-deep);
+  width: fit-content;
+  padding: 0.45rem;
+  border-radius: var(--radius-control);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--forest);
+  margin: 0;
+}
+
+.home-stat-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--stone);
+  margin: 0;
+}
+
+/* --- 3. HOW IT WORKS SECTION --- */
+.home-how-section {
+  padding: 6rem 5% 7rem 5%;
+  background: linear-gradient(180deg, var(--sage) 0%, var(--sage-deep) 100%);
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.how-steps-flex-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  position: relative;
+}
+
+.how-step-card {
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  padding: 2.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  box-shadow: var(--shadow-card);
+}
+
+.how-step-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--border-soft);
+}
+
+.how-step-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.how-step-card h3 {
+  font-size: 1.2rem;
+  color: var(--forest);
+  margin: 0;
+}
+
+.how-step-card p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--stone);
+  margin: 0;
+}
+
+/* --- 4. PORTALS GATEWAY SECTION --- */
+.home-portals-section {
+  padding: 6.5rem 5% 7.5rem 5%;
+  position: relative;
+  z-index: 2;
+}
+
+.portals-cards-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.home-portal-entry-card {
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.portal-icon-container {
+  padding: 0.75rem;
+  border-radius: var(--radius-control);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-portal-entry-card h3 {
+  font-size: 1.35rem;
+  color: var(--forest);
+  margin: 0;
+}
+
+.home-portal-entry-card p {
+  font-size: 0.925rem;
+  line-height: 1.55;
+  color: var(--stone);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.btn-portal-entry {
+  background: transparent;
+  color: var(--btn-brand-color, var(--moss));
+  border: 1.5px solid var(--btn-brand-color, var(--border-soft));
+  border-radius: var(--radius-control);
+  padding: 0.55rem 1.1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+  margin-top: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-portal-entry:hover {
+  background: var(--btn-brand-color);
+  color: #ffffff;
+}
+
+.portals-alternative-cta {
+  text-align: center;
+  margin-top: 3.5rem;
+}
+
+.portals-alternative-cta p {
+  color: var(--stone);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.portals-alternative-cta button {
+  background: transparent;
+  border: none;
+  color: var(--moss);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.95rem;
+  text-decoration: underline;
+}
+
+/* --- 5. HOME FOOTER --- */
+.home-footer {
+  background: var(--card);
+  border-top: 1px solid var(--border-soft);
+  padding: 4rem 5% 2.5rem 5%;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-top-panel {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.footer-brand-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-tagline {
+  color: var(--stone);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer-links-side {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-links-side a {
+  color: var(--stone);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-links-side a:hover {
+  color: var(--moss);
+}
+
+.footer-bullet {
+  color: var(--border-soft);
+}
+
+.footer-bottom-panel {
+  max-width: 1200px;
+  margin: 1.5rem auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.copyright-label {
+  color: var(--stone);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.built-tag {
+  color: var(--stone);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ============================================================
+   CLEAN CENTRALIZED AUTHENTICATION CARDS (Sage Bg)
+   ============================================================ */
+.auth-page-container {
   min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  background: var(--sage);
+  padding: 2.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.login-card {
+.auth-card-clean {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   background: var(--card);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  padding: 2.5rem 2rem;
-  text-align: center;
-}
-
-.login-card h1 {
-  font-size: 2.1rem;
-}
-
-.login-tagline {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: var(--moss);
-  font-size: 1.05rem;
-  margin-bottom: 0.75rem;
-}
-
-.login-hint {
-  color: var(--stone);
-  font-size: 0.9rem;
-  margin-bottom: 1.75rem;
-}
-
-.login-roles {
+  border: 1px solid var(--border-soft);
+  padding: 2.5rem 2.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.75rem;
+  position: relative;
+  z-index: 2;
 }
 
-.login-roles button {
+.auth-brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.brand-link-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--forest);
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+}
+
+.official-access-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.725rem;
+  font-weight: 800;
+  color: var(--clay-red);
+  background: #fdf2f2;
+  border: 1px solid rgba(193, 85, 77, 0.2);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.auth-brand-header h2 {
+  font-size: 1.65rem;
+  color: var(--forest);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.auth-brand-header p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--stone);
+  margin: 0;
+}
+
+/* Authentication Clean Forms */
+.auth-form-clean {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group-clean {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-group-clean label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+/* Auth Role selection switch inside card */
+.auth-role-toggle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  background: var(--sage);
+  border: 1px solid var(--border-soft);
+  padding: 0.25rem;
+  border-radius: var(--radius-control);
+}
+
+.role-toggle-btn-clean {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6em;
-  padding: 0.75em 1em;
-  font-size: 1rem;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--stone);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.login-role-icon {
-  font-size: 1.2em;
+.role-toggle-btn-clean:hover {
+  color: var(--forest);
+}
+
+.role-toggle-btn-clean.active {
+  background: var(--card);
+  color: var(--forest);
+  box-shadow: 0 2px 8px rgba(27, 67, 50, 0.08);
+}
+
+/* Input Fields */
+.input-with-icon-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-control);
+  padding: 0.55rem 0.75rem;
+  gap: 0.6rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-with-icon-wrapper:focus-within {
+  border-color: var(--moss);
+  box-shadow: var(--focus-ring);
+}
+
+.input-icon-clean {
+  color: var(--stone);
+  flex-shrink: 0;
+}
+
+.input-with-icon-wrapper input {
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 100%;
+  font-size: 0.95rem;
+  color: var(--forest);
+}
+
+.input-with-icon-wrapper input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.forgot-password-link {
+  text-align: right;
+  margin-top: -0.25rem;
+}
+
+.forgot-password-link a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--stone);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.forgot-password-link a:hover {
+  color: var(--moss);
+}
+
+.btn-auth-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.15s ease;
+  margin-top: 0.5rem;
+}
+
+.btn-auth-submit.authority {
+  background: var(--clay-red);
+}
+
+.btn-auth-submit.authority:hover {
+  background: #aa423a;
+}
+
+.auth-card-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 1.25rem;
+  text-align: center;
+}
+
+.auth-card-footer p {
+  font-size: 0.85rem;
+  color: var(--stone);
+  margin: 0;
+}
+
+.auth-card-footer p a {
+  color: var(--moss);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.footer-links-mini {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.footer-links-mini a {
+  color: var(--stone);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-links-mini a:hover {
+  color: var(--moss);
+}
+
+.dot-divider {
+  color: var(--border-soft);
+}
+
+/* ============================================================
+   RESPONSIVE HOMEPAGE STYLING ADJUSTMENTS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hero-grid-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .hero-left-content {
+    align-items: center;
+  }
+
+  .hero-main-title {
+    font-size: 2.5rem;
+  }
+
+  .how-steps-flex-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portals-cards-container {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links-wrapper {
+    display: none; /* Hide header links on smaller devices for simple scaling */
+  }
+
+  .home-navbar {
+    padding: 1rem 1.25rem;
+  }
+
+  .home-hero-section {
+    padding: 3rem 1.25rem;
+  }
+
+  .home-how-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .home-portals-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .footer-top-panel {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links-side {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
-  .login-card {
-    padding: 2rem 1.25rem;
+  .how-steps-flex-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-box-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-hero-action {
+    width: 100%;
+    justify-content: center;
   }
 }

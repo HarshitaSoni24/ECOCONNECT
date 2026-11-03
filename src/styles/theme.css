@@ -29,8 +29,26 @@
   --radius-pill: 999px;
 
   /* --- Typography --- */
-  --font-heading: 'Bricolage Grotesque', system-ui, 'Segoe UI', sans-serif;
+  --font-heading: 'Fraunces', serif;
   --font-body: 'Nunito Sans', system-ui, 'Segoe UI', sans-serif;
+}
+
+/* Dark mode */
+:root[data-theme='dark'] {
+  --forest: #b3ccbc;
+  --moss: #8cb89f;
+  --leaf: #5a9e7d;
+  --sage: #1a1a1a;
+  --card: #2c2c2c;
+  --sun: #e9b44c;
+  --clay-red: #c1554d;
+  --stone: #a0a0a0;
+
+  --border-soft: #4a4a4a;
+  --sage-deep: #222222;
+  --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 14px 28px rgba(0, 0, 0, 0.4), 0 3px 8px rgba(0, 0, 0, 0.3);
+  --focus-ring: 0 0 0 3px rgba(140, 184, 159, 0.35);
 }
 
 /* --- Reset --- */
@@ -158,5 +176,14 @@ textarea::placeholder {
 label {
   font-weight: 700;
   font-size: 0.9rem;
+  color: var(--forest);
+}
+.role-pill {
+  padding: 2px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  background: var(--leaf);
   color: var(--forest);
 }

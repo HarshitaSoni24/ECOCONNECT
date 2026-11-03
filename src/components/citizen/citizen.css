@@ -1,19 +1,28 @@
-/* Citizen portal: report form + "My Complaints" list. */
+/* ============================================================
+   CITIZEN PORTAL STYLES (Modernized)
+   ============================================================ */
 
 .citizen-portal {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1.5rem 2rem 3rem;
-  max-width: 900px;
+  padding: 2rem;
+  max-width: 1200px;
   margin: 0 auto;
-  text-align: left;
 }
 
-.citizen-portal > p {
-  color: var(--stone);
+.citizen-portal-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
+@media (max-width: 1000px) {
+  .citizen-portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* --- Added Missing Styles --- */
 .complaint-form {
   display: flex;
   flex-direction: column;
@@ -23,56 +32,735 @@
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+/* ============================================================
+   WIZARD STEPPER & MODERN FORM STYLING
+   ============================================================ */
+.complaint-wizard-card {
+  width: 100%;
+  max-width: 580px;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 2rem;
 }
 
-.complaint-form label {
-  margin-top: 0.5rem;
-}
-
-.complaint-form textarea {
-  resize: vertical;
-}
-
-.photo-preview {
-  margin-top: 0.5rem;
-  max-width: 100%;
-  max-height: 200px;
-  border-radius: var(--radius-control);
-  border: 1.5px solid var(--border-soft);
-  object-fit: cover;
-}
-
-.location-row {
+/* Stepper Progress Indicator Header */
+.wizard-progress-header {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: var(--sage-deep);
+  border-bottom: 1px solid var(--border-soft);
 }
 
-.location-value {
-  font-size: 0.9em;
-  color: var(--moss);
+.wizard-step-node {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  flex: 1;
+}
+
+.wizard-step-node:last-of-type {
+  flex: initial;
+}
+
+.node-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1.5px solid var(--border-soft);
+  color: var(--stone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.node-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--stone);
+  transition: color 0.25s ease;
+}
+
+.node-line-connector {
+  position: absolute;
+  top: 50%;
+  left: calc(32px + 0.5rem + 3rem); /* Start past the icon and label */
+  right: 1.5rem;
+  height: 2px;
+  background: var(--border-soft);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Stepper States */
+.wizard-step-node.active .node-icon-wrapper {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.15);
+}
+
+.wizard-step-node.active .node-label {
+  color: var(--forest);
+}
+
+.wizard-step-node.completed .node-icon-wrapper {
+  background: var(--leaf);
+  border-color: var(--leaf);
+  color: var(--forest);
+}
+
+.wizard-step-node.completed .node-label {
+  color: var(--forest);
+}
+
+/* Form Container and Panes */
+.complaint-form-wizard-inner {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.wizard-step-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-height: 220px;
+}
+
+.pane-header h3 {
+  font-size: 1.2rem;
+  color: var(--forest);
+  margin: 0 0 0.25rem 0;
+}
+
+.pane-header p {
+  font-size: 0.85rem;
+  color: var(--stone);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.form-group-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group-field label {
+  font-size: 0.85rem;
+  color: var(--forest);
   font-weight: 700;
 }
 
-.location-error {
-  color: var(--clay-red);
-  font-size: 0.9em;
-  margin-top: 0.25rem;
+.form-group-field textarea {
+  width: 100%;
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-control);
+  padding: 0.8rem;
+  background: var(--card);
+  color: var(--forest);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.my-complaints {
-  max-width: 640px;
+.form-group-field textarea:focus {
+  outline: none;
+  border-color: var(--moss);
+  box-shadow: var(--focus-ring);
+}
+
+/* File Upload Drag-and-Drop Area */
+.photo-upload-container {
+  width: 100%;
+}
+
+.file-drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border-soft);
+  border-radius: var(--radius-card);
+  padding: 2.5rem 1.5rem;
+  cursor: pointer;
+  background: radial-gradient(circle, var(--sage-deep) 0%, transparent 100%);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  text-align: center;
+}
+
+.file-drop-zone:hover {
+  border-color: var(--moss);
+  background-color: var(--sage-deep);
+}
+
+.upload-cloud-icon {
+  color: var(--moss);
+  margin-bottom: 0.75rem;
+}
+
+.upload-main-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 0.25rem;
+}
+
+.upload-sub-text {
+  font-size: 0.8rem;
+  color: var(--stone);
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.preview-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.photo-preview-wizard {
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: var(--radius-control);
+  object-fit: cover;
+  border: 1.5px solid var(--border-soft);
+}
+
+.remove-photo-btn {
+  background: #fff;
+  color: var(--clay-red);
+  border: 1.5px solid var(--clay-red);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: var(--radius-control);
+}
+
+.remove-photo-btn:hover {
+  background: #fdf2f2;
+}
+
+/* Location Tag Panel */
+.location-wizard-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.btn-location-action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--forest);
+  color: #fff;
+  border-radius: var(--radius-control);
+  padding: 0.65rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-location-action:hover:not(:disabled) {
+  background: var(--moss);
+}
+
+.btn-location-action.pulse {
+  animation: pulse-locate 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-locate {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.location-success-indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: var(--sage-deep);
+  border: 1px solid var(--border-soft);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-control);
+  width: 100%;
+}
+
+.success-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--moss);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.coords-text {
+  font-size: 0.85rem;
+  color: var(--forest);
+  margin: 0;
+}
+
+.coords-text span {
+  font-family: monospace;
+  font-weight: 700;
+  color: var(--moss);
+}
+
+.location-pending-text {
+  font-size: 0.85rem;
+  color: var(--stone);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.location-error-banner {
+  background: #fdf2f2;
+  border: 1px solid rgba(193, 85, 77, 0.2);
+  border-radius: var(--radius-control);
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+/* Action controls footer */
+.wizard-action-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 1.25rem;
+}
+
+.btn-wizard {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.15s ease;
+}
+
+.btn-wizard.submit-btn.success {
+  background: var(--leaf);
+  color: var(--forest);
+}
+
+.btn-wizard.submit-btn.success:hover {
+  background: #5eb087;
+}
+
+/* Responsive Wizard adjustments */
+@media (max-width: 576px) {
+  .wizard-progress-header {
+    padding: 1.25rem 1rem;
+  }
+
+  .node-label {
+    display: none; /* Hide labels on mobile to prevent overcrowding */
+  }
+
+  .node-line-connector {
+    left: calc(32px + 1rem);
+    right: 1rem;
+  }
+
+  .complaint-form-wizard-inner {
+    padding: 1.25rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .citizen-portal {
-    padding: 1.25rem;
-  }
-
-  .complaint-form,
-  .my-complaints {
+  .complaint-wizard-card {
     max-width: 100%;
   }
+}
+
+/* --- Premium Drives Feed --- */
+.drives-feed-premium {
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+  border: 1px solid var(--border-soft);
+}
+
+.feed-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.header-icon { color: var(--moss); }
+
+.drives-table-premium {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.drives-table-premium th {
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--stone);
+  padding: 0.5rem;
+}
+
+.drive-row-strip {
+  background: var(--sage-deep);
+  border-radius: var(--radius-control);
+  transition: all 0.2s ease;
+}
+
+.drive-main-cell {
+  padding: 1rem;
+  border-radius: var(--radius-control) 0 0 var(--radius-control);
+}
+
+.drive-title-group { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
+
+.drive-note-modern { font-size: 0.85rem; color: var(--stone); margin: 0; }
+.drive-coords-sub { font-size: 0.75rem; color: var(--stone); margin-top: 0.25rem; display: flex; align-items: center; gap: 0.3rem; }
+
+.drive-date-cell-modern {
+  padding: 1rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.date-time-item { display: flex; align-items: center; gap: 0.4rem; color: var(--forest); font-weight: 600; }
+.meta-icon { color: var(--moss); }
+
+.drive-action-cell-modern {
+  padding: 1rem;
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+  text-align: right;
+}
+
+.btn-join-premium {
+  background: var(--forest);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+.btn-join-premium.joined {
+  background: var(--leaf);
+  color: var(--forest);
+}
+
+/* Empty State Modern */
+.empty-state-modern-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  color: var(--stone);
+}
+.empty-state-modern-pane.small { padding: 1rem; }
+.empty-icon-wrap { font-size: 2rem; margin-bottom: 0.5rem; }
+.empty-icon-wrap.mini { font-size: 1.5rem; }
+
+/* --- Citizen portal shell --- */
+.citizen-portal {
+  max-width: 1280px;
+  padding: 2.5rem 2rem 4rem;
+}
+
+.citizen-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.3rem 2.7rem;
+  border-radius: 20px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(116, 198, 157, 0.26), transparent 34%),
+    linear-gradient(120deg, #163c2d 0%, #245a43 100%);
+  box-shadow: 0 16px 30px rgba(27, 67, 50, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+.citizen-welcome::after {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: 12%;
+  bottom: -155px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+}
+
+.citizen-welcome-copy { position: relative; z-index: 1; }
+.citizen-welcome h1 { color: #fff; font-size: clamp(2rem, 4vw, 3.25rem); margin: 0.45rem 0 0.55rem; }
+.citizen-welcome p { color: rgba(255, 255, 255, 0.78); font-size: 1.05rem; margin: 0; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  color: var(--leaf);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.eyebrow-dark { color: var(--moss); }
+.welcome-mark {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  color: #d7f0df;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  transform: rotate(-8deg);
+  z-index: 1;
+}
+
+.citizen-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: -1.45rem 1.5rem 2.7rem;
+  position: relative;
+  z-index: 2;
+}
+.citizen-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 84px;
+  padding: 1rem 1.15rem;
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: 13px;
+  box-shadow: var(--shadow-card);
+}
+.citizen-stat-card > div { display: flex; flex-direction: column; gap: 0.08rem; }
+.citizen-stat-card strong { color: var(--forest); font-family: var(--font-heading); font-size: 1.65rem; line-height: 1; }
+.citizen-stat-card span:last-child { color: var(--stone); font-size: 0.78rem; font-weight: 700; }
+.stat-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+}
+.stat-icon-active { color: var(--clay-red); background: #fae9e7; }
+.stat-icon-resolved { color: var(--moss); background: #e2f2e7; }
+.stat-icon-drives { color: #9c7016; background: #fbf0d7; }
+
+.citizen-content-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.citizen-content-heading h2 { font-size: 1.75rem; margin: 0.25rem 0 0; }
+.content-heading-note {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--stone);
+  font-size: 0.84rem;
+  margin: 0 0 0.2rem;
+}
+.citizen-primary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.75fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+.citizen-report-column .complaint-wizard-card { max-width: none; margin-bottom: 0; }
+.citizen-wide-section { margin-top: 1.5rem; }
+.citizen-wide-section .drives-feed-premium { margin-bottom: 0; }
+.citizen-complaints-section .section-card { margin-bottom: 0; padding: 1.75rem; }
+.citizen-complaints-section .complaint-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.citizen-complaints-section .premium-empty-state-card { min-height: 220px; }
+
+.citizen-next-steps {
+  padding: 1.45rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  background: var(--sage-deep);
+}
+.next-steps-heading { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.next-steps-heading h3 { margin: 0.2rem 0 0; font-size: 1.08rem; }
+.next-steps-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: #fff;
+  border-radius: 9px;
+  background: var(--moss);
+}
+.citizen-next-steps ol { list-style: none; margin: 0; padding: 0; }
+.citizen-next-steps li { display: flex; gap: 0.75rem; position: relative; }
+.citizen-next-steps li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 28px;
+  bottom: -9px;
+  width: 1px;
+  background: var(--border-soft);
+}
+.citizen-next-steps li > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 27px;
+  height: 27px;
+  color: var(--moss);
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  z-index: 1;
+}
+.citizen-next-steps li p { color: var(--stone); font-size: 0.82rem; line-height: 1.45; margin: 0 0 1.1rem; }
+.citizen-next-steps li strong { color: var(--forest); font-size: 0.87rem; }
+
+/* Complaint cards use a quiet editorial layout instead of stacking every
+   status element into the same visual column. */
+.citizen-complaint-card {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: start;
+  padding: 1rem;
+  min-width: 0;
+  box-shadow: none;
+  border: 1px solid var(--border-soft);
+}
+.citizen-complaint-card.no-evidence { grid-template-columns: minmax(0, 1fr); }
+.citizen-complaint-card:hover {
+  transform: none;
+  border-color: var(--moss);
+  box-shadow: 0 8px 18px rgba(27, 67, 50, 0.08);
+}
+.citizen-complaint-media { min-width: 0; }
+.citizen-complaint-media .btn-thumb-click {
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: var(--stone);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.citizen-complaint-media .complaint-thumb {
+  display: block;
+  width: 100%;
+  height: 118px;
+  margin-bottom: 0.45rem;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.citizen-complaint-media .btn-thumb-click span {
+  display: block;
+  padding-left: 0.15rem;
+}
+.citizen-complaint-media .btn-thumb-click:hover {
+  color: var(--moss);
+  background: transparent;
+}
+.citizen-complaint-card .complaint-body { gap: 0.55rem; }
+.citizen-complaint-card .complaint-text {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.citizen-complaint-card .complaint-meta-row { margin: 0; }
+.citizen-complaint-card .delivery-progress-container {
+  margin-top: 0.2rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 10px;
+}
+.citizen-complaint-card .step-circle-node { width: 27px; height: 27px; font-size: 0.85rem; }
+.citizen-complaint-card .step-main-label { font-size: 0.72rem; }
+.citizen-complaint-card .step-sub-desc { display: none; }
+.citizen-complaint-card .step-node-wrapper { margin-bottom: 0.25rem; }
+.citizen-complaint-card .step-connector-bar { height: 2px; }
+.citizen-complaint-card .citizen-latest-update {
+  padding: 0.6rem 0.7rem;
+  border-left: 3px solid var(--leaf);
+  border-radius: 0 7px 7px 0;
+  background: var(--sage-deep);
+}
+.citizen-latest-update span {
+  display: block;
+  color: var(--moss);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.citizen-latest-update p {
+  overflow: hidden;
+  margin: 0.18rem 0 0;
+  color: var(--forest);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .citizen-portal { padding: 1.25rem 1rem 3rem; }
+  .citizen-welcome { padding: 1.7rem 1.4rem; border-radius: 15px; }
+  .welcome-mark { width: 54px; height: 54px; }
+  .citizen-stat-grid { grid-template-columns: 1fr; margin: -0.75rem 0 2rem; gap: 0.6rem; }
+  .citizen-stat-card { min-height: 66px; }
+  .citizen-content-heading { align-items: start; flex-direction: column; gap: 0.35rem; }
+  .citizen-primary-grid { grid-template-columns: 1fr; }
+  .citizen-wide-section { margin-top: 1rem; }
+  .citizen-complaints-section .complaint-list { grid-template-columns: 1fr; }
+  .citizen-complaint-card { grid-template-columns: 104px minmax(0, 1fr); gap: 0.8rem; padding: 0.8rem; }
+  .citizen-complaint-card.no-evidence { grid-template-columns: minmax(0, 1fr); }
+  .citizen-complaint-media .complaint-thumb { height: 96px; }
+  .citizen-complaint-card .step-main-label { font-size: 0.67rem; }
 }

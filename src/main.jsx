@@ -8,6 +8,7 @@ import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { ComplaintsProvider } from './context/ComplaintsContext.jsx'
 import { DrivesProvider } from './context/DrivesContext.jsx'
+import { Toaster } from 'sonner'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -20,5 +21,6 @@ createRoot(document.getElementById('root')).render(
         </ComplaintsProvider>
       </AuthProvider>
     </BrowserRouter>
+    <Toaster />
   </StrictMode>,
 )

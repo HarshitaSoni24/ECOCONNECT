@@ -1,0 +1,173 @@
+.delivery-progress-container {
+  background: var(--sage-deep);
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1rem;
+  margin-top: 1rem;
+  border: 1px solid var(--border-soft);
+  width: 100%;
+}
+
+.delivery-progress-track {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  gap: 0.5rem;
+}
+
+.delivery-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  text-align: center;
+}
+
+.step-node-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.step-circle-node {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.25s ease;
+  font-size: 1.15rem;
+  position: relative;
+}
+
+.step-connector-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 3px;
+  background: var(--border-soft);
+  z-index: 1;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.step-connector-bar.filled {
+  background: var(--leaf);
+}
+
+/* State Styling: Completed */
+.delivery-progress-step.completed .step-circle-node {
+  background: var(--leaf);
+  border-color: var(--moss);
+  color: var(--forest);
+  transform: scale(1.05);
+}
+
+.node-check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--forest);
+}
+
+/* State Styling: Active */
+.delivery-progress-step.active .step-circle-node {
+  background: var(--card);
+  border-color: var(--moss);
+  box-shadow: 0 0 12px rgba(45, 106, 79, 0.25);
+  transform: scale(1.1);
+}
+
+.pulsing-halo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--leaf);
+  animation: halo-pulse 1.8s infinite ease-out;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes halo-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+/* Text groups */
+.step-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 2;
+}
+
+.step-main-label {
+  font-size: 0.825rem;
+  font-weight: 800;
+  color: var(--forest);
+  transition: color 0.25s ease;
+}
+
+.delivery-progress-step.active .step-main-label {
+  color: var(--moss);
+}
+
+.delivery-progress-step.pending .step-main-label {
+  color: var(--stone);
+}
+
+.step-sub-desc {
+  font-size: 0.725rem;
+  color: var(--stone);
+}
+
+/* Responsive collapse on smaller viewports */
+@media (max-width: 480px) {
+  .delivery-progress-track {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .delivery-progress-step {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .step-node-wrapper {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  .step-connector-bar {
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 1.5rem;
+    transform: translateX(-50%) translateY(14px);
+  }
+
+  .step-label-group {
+    align-items: flex-start;
+  }
+}
